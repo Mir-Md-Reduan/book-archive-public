@@ -13,39 +13,48 @@ const loadData = () => {
 }
 // display books detail, error check and result found function 
 const displayBooks = (data) => {
-    // Checking Error and Displaying Error Message
+    // Collecting id from HTML file
     const foundResult = document.getElementById('found-result');
     const errorCheck = document.getElementById('error-check');
     const displayBookDetail = document.getElementById('display-details');
+    // error checking and displaying error message
     if (data.numFound === 0) {
         // Clear Book Details, Found Result and error message
         displayBookDetail.textContent = '';
         foundResult.textContent = '';
         errorCheck.textContent = '';
+        // create paragraph element
         const p = document.createElement('p');
+        // add a class in paragraph tag
         p.classList.add('text-center');
+        // add paragraph element
         p.innerText = 'Please Type a Valid Book Name';
+        // append paragraph to error-check id
         errorCheck.append(p);
     }
     else {
-        // Clear error message
+        // Clear error message, found result and display book detail.s
         errorCheck.textContent = '';
-        // displaying book search result
         foundResult.textContent = '';
+        displayBookDetail.textContent = '';
+        // displaying book search found result
         const p = document.createElement('p');
         p.classList.add('text-center');
         p.innerText = `Result Found ${data.numFound}`;
         foundResult.append(p);
-        // Clear Books details 
-        displayBookDetail.textContent = '';
         const docs = (data.docs);
         // checking array with forEach chaining optional ? mark 
         docs?.forEach(doc => {
-            // Displaying Books Result Details
+            // dynamic images data 
             const srcUrl = `https://covers.openlibrary.org/b/id/${doc.cover_i}-L.jpg`;
             const srcValue = (doc.cover_i ? srcUrl : 'images/default.jpg');
+            // Displaying Books Result Details
+
+            // create div element
             const div = document.createElement('div');
+            // addint col class to div
             div.classList.add('col');
+            // set div innter HTML with dynamic string
             div.innerHTML = `
                 <img height="400px" src ="${srcValue}" class="card-img-top" alt="...">
                 <div class="card-body">
@@ -57,6 +66,7 @@ const displayBooks = (data) => {
                     </p>
                 </div>
             `;
+            // append div to display-details id
             displayBookDetail.appendChild(div);
         });
     }
