@@ -1,39 +1,45 @@
-
+//Onclick button Input field data receive function 
 const loadData = () => {
+    // taking input value;
     const inputField = document.getElementById('input-field');
     const inputText = inputField.value;
+    // Clear input field
     inputField.value = '';
-
+    // fetching api
     const url = `https://openlibrary.org/search.json?q=${inputText}`;
     fetch(url)
         .then(res => res.json())
         .then(data => displayBooks(data));
 }
-
+// display books detail, error check and result found function 
 const displayBooks = (data) => {
-    // console.log(data.docs)
+    // Checking Error and Displaying Error Message 
     const errorCheck = document.getElementById('error-check');
-    // Displaying Result Found 
     if (data.numFound === 0) {
+        errorCheck.textContent = '';
         const p = document.createElement('p');
         p.classList.add('text-center');
         p.innerText = 'Please Type a Valid Book Name';
         errorCheck.append(p);
     }
     else {
+        // Clear error message
         errorCheck.textContent = '';
+        // displaying book search result
         const foundResult = document.getElementById('found-result');
         foundResult.textContent = '';
         const p = document.createElement('p');
         p.classList.add('text-center');
         p.innerText = `Result Found ${data.numFound}`;
         foundResult.append(p);
-        // Displaying Books Result Details
+
         const displayBookDetail = document.getElementById('display-details');
+        // Clear Books details 
         displayBookDetail.textContent = '';
         const docs = (data.docs);
-        // console.log(docs);
+        // checking array with chaining optional ? mark
         docs?.forEach(doc => {
+            // Displaying Books Result Details
             console.log(doc.author_name);
             const div = document.createElement('div');
             div.classList.add('col');
@@ -49,8 +55,4 @@ const displayBooks = (data) => {
             displayBookDetail.appendChild(div);
         });
     }
-
-
-
-
 }
