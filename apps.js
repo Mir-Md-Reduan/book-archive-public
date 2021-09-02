@@ -38,9 +38,14 @@ const displayBooks = (data) => {
         foundResult.textContent = '';
         displayBookDetail.textContent = '';
         // displaying book search found result
+
+        // create paragraph element
         const p = document.createElement('p');
+        // add a class in paragraph tag 
         p.classList.add('text-center');
+        // add paragraph element
         p.innerText = `Result Found ${data.numFound}`;
+        // append paragraph to found-result id
         foundResult.append(p);
         const docs = (data.docs);
         // checking array with forEach chaining optional ? mark 
@@ -52,7 +57,7 @@ const displayBooks = (data) => {
 
             // create div element
             const div = document.createElement('div');
-            // addint col class to div
+            // adding col class to div
             div.classList.add('col');
             // set div innter HTML with dynamic string
             div.innerHTML = `
