@@ -39,7 +39,7 @@ const displayBooks = (data) => {
         // Clear Books details 
         displayBookDetail.textContent = '';
         const docs = (data.docs);
-        // checking array with chaining optional ? mark
+        // checking array with forEach chaining optional ? mark 
         docs?.forEach(doc => {
             // Displaying Books Result Details
             const div = document.createElement('div');
@@ -47,10 +47,12 @@ const displayBooks = (data) => {
             div.innerHTML = `
                 <img height="400px" src="https://covers.openlibrary.org/b/id/${doc.cover_i ? doc.cover_i : ''}-L.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
-                    <h5 class="card-title">Book Name: ${doc.title ? doc.title.slice(0, 25) : ''}</h5>
-                    <p class="card-text"><b>Author Name:</b> <small>${doc.author_name ? doc.author_name : ''}</small> <br>
-                    <b>Publisher Name:</b> ${doc.publisher ? doc.publisher : ''}<br>
-                    <b>First Published Year:</b> ${doc.first_publish_year ? doc.first_publish_year : ''}</p>
+                    <h5 class="card-title">Book Name: ${doc.title ? doc.title : ''}</h5>
+                    <p class="card-text">
+                        <b>Author Name:</b> <small>${doc.author_name?.[0]}</small > <br>
+                        <b>Publisher Name:</b> ${doc.publisher?.[0]}<br>
+                        <b>First Published Year:</b> ${doc.first_publish_year ? doc.first_publish_year : ''}
+                    </p>
                 </div>
             `;
             displayBookDetail.appendChild(div);
