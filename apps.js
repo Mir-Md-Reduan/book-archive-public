@@ -42,10 +42,12 @@ const displayBooks = (data) => {
         // checking array with forEach chaining optional ? mark 
         docs?.forEach(doc => {
             // Displaying Books Result Details
+            const srcUrl = `https://covers.openlibrary.org/b/id/${doc.cover_i}-L.jpg`;
+            const srcValue = (doc.cover_i ? srcUrl : 'images/default.jpg');
             const div = document.createElement('div');
             div.classList.add('col');
             div.innerHTML = `
-                <img height="400px" src="https://covers.openlibrary.org/b/id/${doc.cover_i ? doc.cover_i : ''}-L.jpg" class="card-img-top" alt="...">
+                <img height="400px" src ="${srcValue}" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">Book Name: ${doc.title ? doc.title : ''}</h5>
                     <p class="card-text">
