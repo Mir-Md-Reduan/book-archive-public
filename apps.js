@@ -19,21 +19,27 @@ const displayBooks = (data) => {
     foundResult.append(p);
 
     const displayBookDetail = document.getElementById('display-details');
+    displayBookDetail.textContent = '';
     const docs = (data.docs);
+    // console.log(docs);
     docs.forEach(doc => {
-        console.log(data.docs);
-        displayBookDetail.textContent = '';
+        console.log(doc);
+
         const div = document.createElement('div');
         div.classList.add('col');
         div.innerHTML = `
-            <img src="..." class="card-img-top" alt="...">
+            <img src="https://covers.openlibrary.org/b/id/${doc.cover_i}-L.jpg" class="card-img-top" alt="...">
             <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This is a longer card with supporting  text below as a natural lead-in to
-                    additional content. This content is a little bit longer.</  p>
+                <h5 class="card-title">Books-Name: ${doc.title}</h5>
+                
+                <p class="card-text">Author Name: <small>${doc.author_name}</small> <br>
+                Publisher Name: ${doc.publisher}<br>
+                First Published Year: ${doc.first_publish_year}</p>
             </div>
         `;
         displayBookDetail.appendChild(div);
     });
+
+
 
 }
