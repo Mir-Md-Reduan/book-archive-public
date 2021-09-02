@@ -13,9 +13,14 @@ const loadData = () => {
 }
 // display books detail, error check and result found function 
 const displayBooks = (data) => {
-    // Checking Error and Displaying Error Message 
+    // Checking Error and Displaying Error Message
+    const foundResult = document.getElementById('found-result');
     const errorCheck = document.getElementById('error-check');
+    const displayBookDetail = document.getElementById('display-details');
     if (data.numFound === 0) {
+        // Clear Book Details, Found Result and error message
+        displayBookDetail.textContent = '';
+        foundResult.textContent = '';
         errorCheck.textContent = '';
         const p = document.createElement('p');
         p.classList.add('text-center');
@@ -26,14 +31,11 @@ const displayBooks = (data) => {
         // Clear error message
         errorCheck.textContent = '';
         // displaying book search result
-        const foundResult = document.getElementById('found-result');
         foundResult.textContent = '';
         const p = document.createElement('p');
         p.classList.add('text-center');
         p.innerText = `Result Found ${data.numFound}`;
         foundResult.append(p);
-
-        const displayBookDetail = document.getElementById('display-details');
         // Clear Books details 
         displayBookDetail.textContent = '';
         const docs = (data.docs);
