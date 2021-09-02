@@ -40,7 +40,6 @@ const displayBooks = (data) => {
         // checking array with chaining optional ? mark
         docs?.forEach(doc => {
             // Displaying Books Result Details
-            console.log(doc.author_name);
             const div = document.createElement('div');
             div.classList.add('col');
             div.innerHTML = `
